@@ -21,9 +21,11 @@ function pickedMonth (month) {
   props.monthFun(month);
 }
 
+  let months = [ "January", "February", "March", "April", "May", "June", 
+      "July", "August", "September", "October", "November", "December" ];
   if (visible) {
 return (
-      <div id="monthDiv">
+      <div>
         <MonthYearPicker
           caption=""
           selectedMonth={date.month}
@@ -36,7 +38,7 @@ return (
       </div> );
   } else {
     return (
-      <button onClick={showFun}>{date.month+"/"+date.year}</button>
+      <button className="dateText" onClick={showFun}>{months[date.month-1]} {date.year}</button>
     )
   }
 }
