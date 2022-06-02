@@ -29,7 +29,7 @@ hr {
 .header {
   display: flex;
   flex-direction: row;
-  width: 75%;
+  width: 90%;
   max-width: 1220px;
   margin-top: 30px;
   margin-bottom: 90px;
@@ -39,6 +39,7 @@ h1 {
   font-weight: bold;
   font-size: 28px;
   color: white;
+  text-align: center;
 }
 
 .alwaysShown {
@@ -46,9 +47,9 @@ h1 {
   flex-direction: row;
   justify-content: space-between;
   gap: 2%;
-  width: 75%;
-  max-width: 1220px;
-  margin-bottom: 80px;
+  width: 90%;
+  max-width: 1230px;
+  margin-bottom: 30px;
 }
 
 .paraButton {
@@ -102,17 +103,18 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 75%;
-  max-width: 1220px;
+  width: 90%;
+  max-width: 1270px;
 }
 .hiddenRight {
   display: flex;
   flex-direction: column;
-  width: 46%;
+  width: 43%;
+  margin-top: 55px;
 }
 .chart {
   width: 40%;
-  height: 300px;
+  height: 350px;
   padding: 15px;
   padding-left: 20px;
   padding-right: 20px;
@@ -135,24 +137,36 @@ img {
   padding: 20px 20px;
   margin-bottom: 10px;
 }
-.dateBox {
-  width: 125px;
-  height: 110px;
-  padding: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
+.month-year-picker {
+  background-color: white;
+  margin: -10px 30px 0px 0px !important;
+}
+.year-picker {
+  margin: 0px;
+}
+.month-picker {
+  margin: 0px;
 }
 
 @media screen and (max-width: 900px) {
+  .month-year-picker {
+    position: absolute;
+    z-index: 9;
+  }
+  #stripe {
+    height: 130px;
+  } 
   .header {
     justify-content: center;
+    margin-top: 40px;
     margin-bottom: 140px;
   }
   .alwaysShown {
     flex-direction: column-reverse;
     align-items: center;
+    width: 75%;
     gap: 0px;
-    margin-bottom: 120px;
+    margin-bottom: 50px;
   }
   img {
   }
@@ -165,20 +179,26 @@ img {
   }
 
   .hidden{
-    width: 65%;
+    position: relative;
+    width: 75%;
     height: 825px;
     flex-direction: column-reverse;
     align-items: center;
   }
   #hiddenP {
-    width: 98%;
-    heightmargin: top;  .chart {
-    margin-top: 160px;
-    width: 98%;
-    height: 200%;
+    width: 100%;
+    max-width: none;
+  }
+  .chart {
+    width: 90%;
+    height: 400px;
+    margin-top: 0px;
   }
   .hiddenRight {
-    width: 98%;
+    width: 84%;
+  }
+  .month-year-picker {
+    margin-left: -10px !important; 
   }
 }
 
@@ -187,11 +207,42 @@ img {
     height: 145px;
   }
   .header {
-    display: flex;
-    flex-direction: center;
-    align-self: center;
+    text-align: center;
     max-width: 280px;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-bottom: 130px;
+  }
+  .alwaysShown {
+    margin-bottom: 60px;
+    width: 80%;
+  }
+  .imgCap {
+    width: 98%;
+    margin-bottom: 30px;
+  }
+  .paraButton {
+    width: 98%;
+  }
+  .hidden{
+    width: 77%;
+    height: 640px;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  #hiddenP {
+    width: 98%;
+    height: 90%;
+  }
+  .chart {
+    margin-top: 0px;
+    width: 100%;
+    max-height: 280px;
+  }
+  .hiddenRight {
+    width: 98%;
+    margin-top: 0px;
+  }
+  .month-year-picker {
+    margin-left: -14% !important; 
   }
 }

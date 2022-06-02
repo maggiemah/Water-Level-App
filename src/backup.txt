@@ -7,7 +7,10 @@ import MonthPicker from './MonthPicker';
 import PropTypes from 'prop-types'; //for month-year-picker
 
 /* TODO List:
-1. if time, make the chart look prettier
+1. call useAsyncFetch every time the date changes (it changes by month-picker)
+  -> probably by effect hook useEffect
+  -> this should update the chart when a new date is selected
+2. if time, make the chart look prettier
   -> add the space b/w axis & first bar and after last bar
   -> spacing between ticks is weird and the y-axis is shorter than the 60 tick
 */
@@ -41,7 +44,7 @@ function App() {
       )
   }
   function Hidden() {    
-    if(seeButton == "See more")
+    // if(seeButton == "See more")
       return (
         <div className="hidden">
           <WaterDisplay date={date}/>
@@ -60,22 +63,28 @@ function App() {
           </div>
         </div>
       )
-    else
-      return (
-        <div></div>
-      )
+    // else
+    //   return (
+    //     <div></div>
+    //   )
   }
   
 
   function WaterChart(reservoirs) {
     let bS = 0.6; //bar percentage size
+    let Labels = [];
+    let Values = [];
     let res = reservoirs.reservoirs;
-    let chartData = {
-        labels: res.map(data => data.name),
+    for(let i = 0; i < res.length; i++){
+      Labels.push(res[i].name);
+      Values.push(res[i].value);
+    }
+    const [chartData, setChartData] = useState({
+        labels: Labels,
         datasets: [
           {
             label: "Current Capacity",
-            data: res.map(data => data.value),
+            data: Values,
             barPercentage: bS,
             backgroundColor: ['rgb(66, 145, 152)'],  
           },
@@ -86,7 +95,8 @@ function App() {
             backgroundColor: ['rgb(120, 199, 227)'],
           },
         ],
-      };
+      });
+
       return (
         <div className="chart"> 
           <BarChart chartData={chartData}/> 
@@ -96,7 +106,7 @@ function App() {
 
   function WaterDisplay(date) {
     console.log("in WaterDisplay");
-    // static var will contain the list of reservoirs
+    // static var will contain the list of schools
     const [reservoirs, setReservoirs] = useState([]);
     // call the custom fetch hook, passing the date and the callback functions it can use
     useAsyncFetch(`/query/getList`, {
@@ -110,6 +120,23 @@ function App() {
     function thenFetch (res) {
       console.log("thenFetch");
       setReservoirs(res);
+      // setChartData({
+      //   labels: reservoirs.map(data => data.name),
+      //   datasets: [
+      //     {
+      //       label: "Current Capacity",
+      //       data: reservoirs.map(data => data.value),
+      //       barPercentage: 0.75,
+      //       backgroundColor: ['rgb(66, 145, 152)'],
+      //     },
+      //     {
+      //       label: "Total Capacity",
+      //       barPercentage: 0.75,
+      //       data: [45.52, 35.38, 24.48, 24, 10.62, 20.3, 16.02],
+      //       backgroundColor: ['rgb(120, 199, 227)'],
+      //     },
+      //   ],
+      // });
     }
     
     function catchFetch (error) {

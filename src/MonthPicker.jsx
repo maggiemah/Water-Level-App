@@ -25,7 +25,6 @@ function pickedMonth (month) {
       "July", "August", "September", "October", "November", "December" ];
   if (visible) {
 return (
-      <div>
         <MonthYearPicker
           caption=""
           selectedMonth={date.month}
@@ -35,7 +34,7 @@ return (
           onChangeYear = {pickedYear}
           onChangeMonth = {pickedMonth}
         />
-      </div> );
+);
   } else {
     return (
       <button className="dateText" onClick={showFun}>{months[date.month-1]} {date.year}</button>
