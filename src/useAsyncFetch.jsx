@@ -21,8 +21,7 @@ const useAsyncFetch = function (url, options, thenFun, catchFun ) {
   }
 
   // The effect hook is a function called when the component is created or updated.
-  // In this case, "the component" refers to the component using 
-  // this useFetch hook.
+  // In this case, "the component" refers to the component using this hook.
   // Because we give it a second argument of [] (meaning "update when the variables in this empty list change"),
   // this particular effect hook will get run only after the component is created, not when it is updated.
   // In particular, when the calling component is re-rendered its state variables change,
@@ -32,12 +31,6 @@ const useAsyncFetch = function (url, options, thenFun, catchFun ) {
     fetchData()
       .catch(catchFun("could not fetch"));
   }, []);
-
-  // useEffect(function () {
-  //   console.log("Calling fetch2");
-  //   fetchData()
-  //     .catch(catchFun("could not fetch2"));
-  // }, [json]);
 }
 
 export default useAsyncFetch;

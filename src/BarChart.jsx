@@ -44,7 +44,6 @@ let options = {
 };
 
 function BarChart({ chartData }) {
-  //console.log(chartData);
   return <Bar data={chartData} options={options} />;
 }
 

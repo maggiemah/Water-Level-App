@@ -6,16 +6,9 @@ import BarChart from "./BarChart";
 import MonthPicker from './MonthPicker';
 import PropTypes from 'prop-types'; //for month-year-picker
 
-/* TODO List:
-1. if time, make the chart look prettier
-  -> add the space b/w axis & first bar and after last bar
-  -> spacing between ticks is weird and the y-axis is shorter than the 60 tick
-*/
-
 function App() {
   const[seeButton, setSeeButton] = useState("See less")
-  // state var reservoirs will contain the water storage data
-  // reservoirs is an array of objects (e.g. {stationId: "SHA", name: "Shasta", value: 340})
+  
   let [date, setDate] = useState({'year': 2022, 'month': 4});
   let months = [ "January", "February", "March", "April", "May", "June", 
       "July", "August", "September", "October", "November", "December" ];
@@ -96,7 +89,8 @@ function App() {
 
   function WaterDisplay(date) {
     console.log("in WaterDisplay");
-    // static var will contain the list of reservoirs
+    // state var reservoirs will contain the array of water storage data
+    // (e.g. an element {stationId: "SHA", name: "Shasta", value: 340})
     const [reservoirs, setReservoirs] = useState([]);
     // call the custom fetch hook, passing the date and the callback functions it can use
     useAsyncFetch(`/query/getList`, {
@@ -128,7 +122,7 @@ function App() {
     }
   }
 
-  // build the page using the components
+  // build the entire
   return (
       <div>
         <hr id="stripe" />
